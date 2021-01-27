@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>menu demo</title>
+		<script src= "js/vue.js" type="text/javascript" charset="UTF-8"></script>
+		<style type="text/css">
+			.page{
+				width : 100vw;
+				height : 100vh;
+				background-color : #efefef; 
+				position : fixed;
+				left : 0;
+				right : 0;
+			}
+			.menu{
+				width : 50vw;
+				height : 100vh;
+				position: fixed;
+				background : skyblue;
+				left : 0;
+				right : 0;
+				transform : translateX(100vw);
+				transition: transform 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = "mainApp">
+			<div class = "page">
+				front page
+				<button @click = "toggle"> {{ message }} </button>
+			</div>
+			<div class = "menu" :style= "{transform: 'translateX('+menuWidth+'vw)'}">
+				menu
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		var vm = new Vue({
+			el : "#mainApp",
+			data : {
+				menuWidth : 100,
+				message : "open",
+				altMessage : "close",
+			    messageContainer : ""
+			},
+			methods:{
+				toggle : function(){
+					if(this.menuWidth == 100){
+						this.menuWidth = 70;
+					}else{
+						this.menuWidth = 100;
+					}
+					this.messageContainer = this.message;
+					this.message = this.altMessage;
+					this.altMessage = this.messageContainer;
+				}
+			}
+		})
+	</script>
+</html>
